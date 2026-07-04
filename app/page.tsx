@@ -2,7 +2,6 @@ import Navbar from "./components/layout/Navbar";
 import ImageSlider from "./components/home/ImageSlider";
 import Mission from "./components/home/Mission";
 import PotentialSitesMap from "./components/home/PotentialSitesMap";
-import GetInvolved from "./components/home/GetInvolved";
 import Footer from "./components/layout/Footer";
 import SiteOverview from "./components/home/SiteOverview";
 
@@ -39,9 +38,9 @@ export default function Home() {
         <ImageSlider slides={slides} autoPlayMs={5000} />
         <Mission />
         <PotentialSitesMap />
-              <SiteOverview />
+           <SiteOverview />
         
-        <GetInvolved />
+      
         <Footer/>
       </main>
     </>

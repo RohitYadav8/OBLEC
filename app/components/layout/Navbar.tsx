@@ -120,7 +120,7 @@ useEffect(() => {
 
   {/* Remaining Links */}
   <Link
-    href="#"
+    href="/our-campaign-partners"
     className="group relative text-[16px] font-medium text-gray-700 hover:text-[#4A7C3A]"
   >
     Our Campaign Partners
@@ -128,7 +128,7 @@ useEffect(() => {
   </Link>
 
   <Link
-    href="#"
+    href="/news"
     className="group relative text-[16px] font-medium text-gray-700 hover:text-[#4A7C3A]"
   >
     News
@@ -136,7 +136,7 @@ useEffect(() => {
   </Link>
 
   <Link
-    href="#"
+    href="/how-you-can-help"
     className="group relative text-[16px] font-medium text-gray-700 hover:text-[#4A7C3A]"
   >
     How You Can Help
@@ -144,7 +144,7 @@ useEffect(() => {
   </Link>
 
   <Link
-    href="#"
+    href="/the-facts"
     className="group relative text-[16px] font-medium text-gray-700 hover:text-[#4A7C3A]"
   >
     The Facts
@@ -152,7 +152,7 @@ useEffect(() => {
   </Link>
 
   <Link
-    href="#"
+    href="/get-in-touch"
     className="group relative text-[16px] font-medium text-gray-700 hover:text-[#4A7C3A]"
   >
     Get In Touch
