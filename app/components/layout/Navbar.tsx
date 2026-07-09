@@ -49,15 +49,7 @@ useEffect(() => {
             priority
           />
 
-          <div className="leading-tight">
-            <h2 className="text-2xl font-bold text-[#4A7C3A]">
-              OBLEC
-            </h2>
-
-            <p className="text-xs text-gray-600">
-              Old Basing & Lychpit
-            </p>
-          </div>
+         
         </Link>
 
         {/* Navigation */}
