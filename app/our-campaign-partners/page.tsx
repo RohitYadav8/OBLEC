@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import type React from "react";
+import { useState } from "react";
 import { Fraunces, Work_Sans, IBM_Plex_Mono } from "next/font/google";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
@@ -61,43 +63,144 @@ function FootpathRule({
   );
 }
 
+type Partner = {
+  ref: string;
+  name: string;
+  role?: string;
+  image: string;
+  kind: "photo" | "logo";
+  paragraphs: string[];
+  linkHref?: string;
+  linkLabel?: string;
+};
+
+/* ---------------------------------------------------------------
+   PartnerBio: the lead paragraph is set as a small drop-cap intro
+   — the way the opening line of a register entry is set apart —
+   so the page reads as one confident sentence per person rather
+   than a wall of text. Anything after the first paragraph is
+   filed under "Read full entry", a disclosure that keeps the list
+   scannable while the complete statement stays one tap away.
+----------------------------------------------------------------- */
+function PartnerBio({ paragraphs }: { paragraphs: string[] }) {
+  const [open, setOpen] = useState(false);
+  const [lead, ...rest] = paragraphs;
+  const firstLetter = lead.charAt(0);
+  const leadRemainder = lead.slice(1);
+
+  return (
+    <div className="mt-4 max-w-2xl">
+      <p className="leading-8" style={{ color: "#3d463e" }}>
+        <span
+          aria-hidden="true"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--moss-dark)",
+            float: "left",
+            lineHeight: "0.78",
+            fontSize: "3.4rem",
+            fontWeight: 500,
+            paddingRight: "0.35rem",
+            marginTop: "0.3rem",
+          }}
+        >
+          {firstLetter}
+        </span>
+        {leadRemainder}
+      </p>
+
+      {rest.length > 0 && (
+        <>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateRows: open ? "1fr" : "0fr",
+              transition: "grid-template-rows 420ms ease",
+            }}
+          >
+            <div className="overflow-hidden">
+              <div className="space-y-4 pt-4">
+                {rest.map((para, i) => (
+                  <p key={i} className="leading-8" style={{ color: "#3d463e" }}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            className="flex items-center gap-2 mt-4 text-xs uppercase tracking-[0.18em] font-medium"
+            style={{ fontFamily: "var(--font-mono)", color: "var(--clay)" }}
+          >
+            {open ? "Show less" : "Read full entry"}
+            <ChevronDown
+              size={14}
+              style={{
+                transition: "transform 300ms ease",
+                transform: open ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function CampaignPartnersPage() {
-  const partners = [
+  const partners: Partner[] = [
     {
       ref: "01",
       name: "Onnalee Cubitt",
       role: "Local Councillor",
-      image: "/partners/onnalee.jpg",
-      kind: "photo" as const,
-      description:
-        "For many years we have worked to protect Basing and Lychpit from excessive development while preserving the local environment, countryside, and community identity.",
+      image: "/cubitt.png",
+      kind: "photo",
+      paragraphs: [
+        "I am a local mum aged 56. I grew up locally and have been one of your Borough Councillors since 2008. I have fought hard to protect Basing and Lychpit, the villages and the River Loddon and its precious environment for many years.",
+        "Basing and Lychpit is under threat like never before. The Government housing number imposed on this Borough is 18,000 more by 2039. We have already undergone the 6th highest growth in population in the country from the recent census data at over 10% from 2011 to 2021. Our sewage system can't cope. Our roads can't cope. Our schools, dentists and GP surgeries can't cope.",
+        "We need the public to engage like never before. As your councillors Sven, Kate and I can't fight this alone. We are delighted that your Parish is leading with this Local Environment Campaign working closely with S.O.L.V.E. (Save our Loddon Valley Environment) which has been hugely successful in protecting our Ward thus far. Please sign up. Please engage in the process. Your Parish needs you. We need you.",
+      ],
     },
     {
       ref: "02",
-      name: "CPRE Hampshire",
-      role: "Countryside Charity",
+      name: "Des O'Donnell",
+      role: "CPRE Hampshire — The Countryside Charity",
       image: "/CPRE-Hampshire-LOGO.png",
-      kind: "logo" as const,
-      description:
-        "CPRE Hampshire works to protect and enhance the countryside through sustainable planning, environmental awareness, and community engagement.",
+      kind: "logo",
+      paragraphs: [
+        "At CPRE Hampshire, the countryside charity, we believe in countryside and green spaces that are accessible to all, rich in nature and play a crucial role in responding to the climate emergency. Sadly today, Hampshire's countryside faces many challenges including population growth, climate change, pressures to grow the economy and build more houses. CPRE Hampshire is an independent charity working to promote, protect and enhance local countryside in a way that underpins the economy and maintains the balance between necessary development and a thriving Hampshire countryside.",
+        "In North Hampshire, we have an active group of volunteers monitoring proposed development. This often means raising objections to planning applications where, in our view, the harm to the local landscape outweighs any benefit from proposed development. In Basingstoke and Deane, the Local Plan was adopted in 2016 covering the period 2011–2029. Local Plans are at the heart of the planning system and are normally the main consideration for deciding planning applications. The Basingstoke Local Plan is being updated covering the period to 2039. Our volunteers and the Parish Councils we engage with are working hard to understand and influence the Local Plan to ensure a positive outcome for the local countryside.",
+        "To that end we fully endorse and support the aims of the Old Basing and Lychpit Environment Campaign (OBLEC) in opposing proposals for up to 2,150 houses on three sites in the Old Basing and Lychpit parish.",
+        "We would encourage you to feed into the process and have your say on local development. For more information see the Planning Hub of our website.",
+        "If you are as passionate as we are to preserve our local landscapes, please consider joining us as a CPRE Hampshire member. Membership helps us to protect the beautiful Hampshire countryside, keep working on its behalf, and starts from £3.00 per month (£36.00 per year).",
+      ],
+      linkHref: "https://www.cprehampshire.org.uk",
+      linkLabel: "Visit cprehampshire.org.uk",
     },
     {
       ref: "03",
       name: "Visualytes",
       role: "Web & Marketing Solutions",
       image: "/visualytes.png",
-      kind: "logo" as const,
-      description:
-        "Visualytes provides website development, branding, and digital marketing services helping organisations grow their online presence.",
+      kind: "logo",
+      paragraphs: [
+        "When we say we are your partner for total technical care, we mean it! With many years of experience and expertise, we are one of the industry leaders in integrated IT solutions, which are not only the back bone of our business but also the trigger of our growth into new innovation and strategic expansion.",
+        "Owing to such forward thinking mindset, we have confidently marched towards new market and service growth areas and successfully positioned ourselves in both software solution and whole lifecycle of software development. We are your one-stop shop for all your IT needs. Our client growth and satisfaction has resulted in us globalizing and differentiating ourselves from competitors in a very short time.",
+      ],
     },
     {
       ref: "04",
       name: "Zebra Creative",
       role: "Creative Design Partner",
       image: "/zebra.png",
-      kind: "logo" as const,
-      description:
-        "Zebra Creative delivers graphic design and marketing solutions with a flexible approach tailored to client requirements.",
+      kind: "logo",
+      paragraphs: [
+        "Zebra Creative's approach to what we do enables us to provide full graphic design and marketing services in-house. Should specialist skills be required, we involve our external panel of experts with whom we have spent years building relationships. This allows us to remain flexible yet focused, ensuring our clients receive the best possible service, ideas and value for money. Previously based just outside London but now on the Isle of Wight, we have easy access to London and the South, but, like zebras, we can and do travel miles when required!",
+      ],
     },
   ];
 
@@ -165,36 +268,7 @@ export default function CampaignPartnersPage() {
             </div>
           </div>
         </section>
-
-        {/* INTRO */}
-        <section className="py-24 md:py-28" style={{ background: "var(--chalk)" }}>
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <span
-              className="uppercase tracking-[0.25em] text-xs"
-              style={{ fontFamily: "var(--font-mono)", color: "var(--clay)" }}
-            >
-              Our Campaign Partners
-            </span>
-
-            <h2
-              className="mt-5"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 500,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                color: "var(--moss-dark)",
-              }}
-            >
-              Entered on the register
-            </h2>
-
-            <p className="mt-6 leading-8" style={{ color: "#4b554c" }}>
-              We are supported by dedicated individuals, environmental
-              organisations, creative agencies, and volunteers who share our
-              vision for a better future.
-            </p>
-          </div>
-        </section>
+       
 
         {/* PARTNERS — a register, not a card grid */}
         <section className="pb-8" style={{ background: "var(--paper)" }}>
@@ -202,7 +276,7 @@ export default function CampaignPartnersPage() {
             {partners.map((partner) => (
               <div key={partner.ref}>
                 <div className="grid md:grid-cols-[180px_1fr] gap-8 md:gap-12 py-14">
-                  {/* image — photos get a framed square, logos get a clean strip */}
+                  {/* image — photos get a framed roundel, logos get a clean strip */}
                   <div className="flex md:flex-col items-center md:items-start gap-6">
                     {partner.kind === "photo" ? (
                       <div
@@ -224,7 +298,7 @@ export default function CampaignPartnersPage() {
                           alt={`${partner.name} logo`}
                           fill
                           sizes="180px"
-                          className="object-contain object-left md:object-left"
+                          className="object-contain object-left"
                         />
                       </div>
                     )}
@@ -244,12 +318,14 @@ export default function CampaignPartnersPage() {
                       >
                         {partner.ref}
                       </span>
-                      <span
-                        className="uppercase tracking-[0.18em] text-xs"
-                        style={{ fontFamily: "var(--font-mono)", color: "var(--clay)" }}
-                      >
-                        {partner.role}
-                      </span>
+                      {partner.role && (
+                        <span
+                          className="uppercase tracking-[0.18em] text-xs"
+                          style={{ fontFamily: "var(--font-mono)", color: "var(--clay)" }}
+                        >
+                          {partner.role}
+                        </span>
+                      )}
                     </div>
 
                     <h3
@@ -264,17 +340,23 @@ export default function CampaignPartnersPage() {
                       {partner.name}
                     </h3>
 
-                    <p className="mt-4 leading-8 max-w-2xl" style={{ color: "#3d463e" }}>
-                      {partner.description}
-                    </p>
+                    <PartnerBio paragraphs={partner.paragraphs} />
 
-                    <button
-                      className="flex items-center gap-2 mt-6 text-sm font-medium group"
-                      style={{ color: "var(--moss)" }}
-                    >
-                      Learn more
-                      <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </button>
+                    {partner.linkHref && (
+                      <Link
+                        href={partner.linkHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 mt-6 text-sm font-medium group w-fit"
+                        style={{ color: "var(--moss)" }}
+                      >
+                        {partner.linkLabel ?? "Learn more"}
+                        <ArrowUpRight
+                          size={16}
+                          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
+                      </Link>
+                    )}
                   </div>
                 </div>
 
@@ -292,10 +374,9 @@ export default function CampaignPartnersPage() {
                 className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 bg-white"
                 style={{ border: "1px solid var(--sage)" }}
               >
-                {/* Replace "/logo.png" below with the actual path to your OBLEC logo in /public if different */}
                 <Image
                   src="/camera.png"
-                  alt="OBLEC logo"
+                  alt="Camera icon"
                   fill
                   sizes="80px"
                   className="object-contain p-3"
@@ -303,12 +384,7 @@ export default function CampaignPartnersPage() {
               </div>
 
               <div>
-                <span
-                  className="uppercase tracking-[0.2em] text-xs"
-                  style={{ fontFamily: "var(--font-mono)", color: "var(--sage)" }}
-                >
-                  With thanks
-                </span>
+                
                 <h3
                   className="mt-2 text-white"
                   style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "1.85rem" }}
@@ -316,9 +392,8 @@ export default function CampaignPartnersPage() {
                   Photographers
                 </h3>
                 <p className="mt-3 leading-7 text-white/70 max-w-xl">
-                  We are grateful to all photographers and volunteers who
-                  contribute their images to support our campaign and help
-                  showcase the beauty of our local environment.
+                  We are grateful to Chris Hawkins &amp; Peter Bloyce for letting
+                  us use their pictures.
                 </p>
               </div>
             </div>
