@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
@@ -12,19 +12,92 @@ import { OtherAreasSection } from "../components/shared/OtherAreasSection";
 import { ThanksLogosStrip } from "../components/shared/ThanksLogosStrip";
 
 const carouselImages = [
-  { src: "/river-loddon-1.jpg", alt: "The River Loddon among overhanging trees" },
-  { src: "/river-loddon-2.jpg", alt: "The River Loddon winding through fields at dusk" },
-  { src: "/river-loddon-3.jpg", alt: "A clear stretch of the River Loddon bordered by hedgerow" },
+  { src: "/River-loddon-0.png", alt: "The River Loddon among overhanging trees" },
+  { src: "/River-loddon-1.png", alt: "The River Loddon winding through fields at dusk" },
+  { src: "/River-loddon-2.png", alt: "A clear stretch of the River Loddon bordered by hedgerow" },
+  { src: "/River-loddon-3.png", alt: "the River loddon flowing beneath the old brick bridge" },
+  { src: "/River-loddon-4.png", alt: "the River loddon winding through the countryside" },
+  { src: "/River-loddon-5.png", alt: "the River loddon reflecting the sky" },
+  { src: "/River-loddon-6.png", alt: "the River loddon in the morning light" },
+  { src: "/River-loddon-7.png", alt: "the River loddon during sunset" },
+  { src: "/River-loddon-8.png", alt: "the River loddon at night" },
+  { src: "/River-loddon-9.png", alt: "the River loddon in the evening" },
+  { src: "/River-loddon-10.png", alt: "the River loddon in the morning" },
+  { src: "/River-loddon-11.png", alt: "the River loddon in the afternoon" },
+  { src: "/River-loddon-12.png", alt: "the River loddon in the evening" },
+  { src: "/River-loddon-13.png", alt: "the River loddon in the morning" },
 ];
 
 export default function RiverLoddonPage() {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const isProgrammaticScroll = useRef(false);
 
-  const scrollByAmount = (dir: 1 | -1) => {
+  // Scroll smoothly to a specific card by index (used by arrow buttons / dots).
+  // Uses scrollLeft math instead of scrollIntoView — scrollIntoView can fight
+  // with scroll-snap on the container and cause a left-right jitter.
+  const scrollToIndex = useCallback((index: number) => {
+    const clamped = Math.max(0, Math.min(index, carouselImages.length - 1));
+    const card = cardRefs.current[clamped];
+    const el = scrollerRef.current;
+    if (!card || !el) return;
+
+    isProgrammaticScroll.current = true;
+    setActiveIndex(clamped);
+
+    const targetLeft = card.offsetLeft - el.offsetLeft;
+    el.scrollTo({ left: targetLeft, behavior: "smooth" });
+
+    // release the "programmatic" lock after the smooth-scroll settles
+    window.clearTimeout((el as any)._scrollLock);
+    (el as any)._scrollLock = window.setTimeout(() => {
+      isProgrammaticScroll.current = false;
+    }, 600);
+  }, []);
+
+  const handlePrev = () => scrollToIndex(activeIndex - 1);
+  const handleNext = () => scrollToIndex(activeIndex + 1);
+
+  // Keep activeIndex in sync if the user scrolls/drags manually,
+  // so the arrows always continue from the right place.
+  // Debounced (only runs once scrolling has paused) instead of on every
+  // scroll frame — running it mid-scroll was what caused the jitter.
+  useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir * (el.clientWidth * 0.9), behavior: "smooth" });
-  };
+
+    let debounceTimer: number | undefined;
+
+    const handleScroll = () => {
+      if (isProgrammaticScroll.current) return;
+
+      window.clearTimeout(debounceTimer);
+      debounceTimer = window.setTimeout(() => {
+        const elRect = el.getBoundingClientRect();
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        cardRefs.current.forEach((card, i) => {
+          if (!card) return;
+          const cardRect = card.getBoundingClientRect();
+          const distance = Math.abs(cardRect.left - elRect.left);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+
+        setActiveIndex(closestIndex);
+      }, 120);
+    };
+
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(debounceTimer);
+    };
+  }, []);
 
   return (
     <div className={`${fontVars} font-body`}>
@@ -44,10 +117,7 @@ export default function RiverLoddonPage() {
 
           <div className="relative h-full flex items-end">
             <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16">
-              <p className="tracking-[0.25em] uppercase text-xs mb-5 font-mono text-sage">
-                Areas Under Threat — Site 04
-              </p>
-
+              
               <h1 className="text-white leading-[0.95] font-display font-medium text-[clamp(2.75rem,6vw,5.25rem)]">
                 River Loddon
               </h1>
@@ -62,31 +132,62 @@ export default function RiverLoddonPage() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="relative">
               <button
-                onClick={() => scrollByAmount(-1)}
+                onClick={handlePrev}
+                disabled={activeIndex === 0}
                 aria-label="Previous photo"
-                className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition text-moss hover:bg-moss hover:text-white"
+                className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white/95 shadow-lg backdrop-blur-sm transition-all duration-300 text-moss hover:bg-moss hover:text-white hover:scale-105 disabled:opacity-0 disabled:pointer-events-none"
               >
                 <ChevronLeft size={20} />
               </button>
               <button
-                onClick={() => scrollByAmount(1)}
+                onClick={handleNext}
+                disabled={activeIndex === carouselImages.length - 1}
                 aria-label="Next photo"
-                className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition text-moss hover:bg-moss hover:text-white"
+                className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white/95 shadow-lg backdrop-blur-sm transition-all duration-300 text-moss hover:bg-moss hover:text-white hover:scale-105 disabled:opacity-0 disabled:pointer-events-none"
               >
                 <ChevronRight size={20} />
               </button>
 
               <div
                 ref={scrollerRef}
-                className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory px-2 [scrollbar-width:none]"
+                className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-proximity px-2 py-2 select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               >
-                {carouselImages.map((img) => (
+                {carouselImages.map((img, i) => (
                   <div
                     key={img.src}
-                    className="relative shrink-0 snap-start rounded-sm overflow-hidden border border-sage w-[min(90vw,380px)] h-[280px]"
+                    ref={(node) => {
+                      cardRefs.current[i] = node;
+                    }}
+                    className={`group relative shrink-0 snap-start overflow-hidden rounded-2xl border transition-all duration-500 ease-out w-[min(90vw,380px)] h-[280px] shadow-md hover:shadow-xl ${
+                      activeIndex === i
+                        ? "border-moss ring-2 ring-moss/40 scale-[1.01]"
+                        : "border-sage/70"
+                    }`}
                   >
-                    <Image src={img.src} alt={img.alt} fill sizes="380px" className="object-cover" />
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="380px"
+                      draggable={false}
+                      onDragStart={(e) => e.preventDefault()}
+                      className="object-cover select-none transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
                   </div>
+                ))}
+              </div>
+
+              {/* Progress dots */}
+              <div className="mt-6 flex items-center justify-center gap-2">
+                {carouselImages.map((img, i) => (
+                  <button
+                    key={img.src}
+                    onClick={() => scrollToIndex(i)}
+                    aria-label={`Go to photo ${i + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeIndex === i ? "w-6 bg-moss" : "w-1.5 bg-sage/60 hover:bg-sage"
+                    }`}
+                  />
                 ))}
               </div>
             </div>
@@ -172,17 +273,17 @@ export default function RiverLoddonPage() {
         {/* LAND COVER MAP */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6">
-            <figure className="rounded-sm overflow-hidden border border-sage bg-chalk">
+            <figure className="rounded-2xl overflow-hidden border border-sage/70 bg-chalk shadow-lg transition-shadow duration-300 hover:shadow-xl">
               <div className="relative w-full aspect-[4/3]">
                 <Image
-                  src="/loddon-valley-land-cover-map.jpg"
+                  src="/River-loddon-map.png"
                   alt="Land cover map of the Loddon Valley catchment, showing arable land, grassland, woodland and freshwater habitat"
                   fill
                   sizes="(max-width: 768px) 100vw, 800px"
-                  className="object-contain"
+                  className="object-contain p-2"
                 />
               </div>
-              <figcaption className="px-4 py-3 text-xs uppercase tracking-[0.18em] font-mono text-moss">
+              <figcaption className="px-5 py-4 text-xs uppercase tracking-[0.18em] font-mono text-moss border-t border-sage/50 bg-white/60">
                 Land cover — the Loddon Valley catchment
               </figcaption>
             </figure>

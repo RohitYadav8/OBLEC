@@ -15,7 +15,8 @@ export function SubHeading({ children }: { children: React.ReactNode }) {
 }
 
 /* A section of the case, filed under a mono "entry code" heading —
-   like a numbered clause in a planning document. */
+   like a numbered clause in a planning document. Pass `code` to show
+   it (e.g. "01"); omit it for a clean heading with just a left accent. */
 export function CaseSection({
   id,
   code,
@@ -23,14 +24,15 @@ export function CaseSection({
   children,
 }: {
   id: string;
-  code: string;
+  code?: string;
   title: string;
   children: React.ReactNode;
 }) {
   return (
     <div id={id} className="py-12 scroll-mt-24 border-t border-sage/50">
-      <div className="flex items-baseline gap-4 mb-5">
-        <span className="text-xs font-mono text-clay">{code}</span>
+      <div className="flex items-center gap-4 mb-5">
+        <span className="w-1.5 h-7 bg-clay rounded-full shrink-0" aria-hidden="true" />
+        {code && <span className="text-xs font-mono text-clay">{code}</span>}
         <h3 className="uppercase tracking-[0.12em] font-display font-semibold text-[1.4rem] text-moss-dark">
           {title}
         </h3>

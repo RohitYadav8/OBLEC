@@ -112,7 +112,7 @@ export default function LodgeFarmPage() {
               <figure className="rounded-sm overflow-hidden border border-sage bg-chalk">
                 <div className="relative w-full aspect-[4/5]">
                   <Image
-                    src="/lodge-farm-map.jpg"
+                    src="/loadge-farm-map.png"
                     alt="Site plan showing the proposed Lodge Farm development boundary"
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"

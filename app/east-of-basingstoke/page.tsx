@@ -8,15 +8,35 @@ import { fontVars } from "../lib/fonts";
 import { FootpathRule } from "../components/shared/FootpathRule";
 import { P, CaseSection, PolicyQuote } from "../components/shared/Typography";
 import { OtherAreasSection } from "../components/shared/OtherAreasSection";
-import { PartnerLogosSlider } from "../components/shared/PartnerLogosSlider";
+import { ThanksLogosStrip } from "../components/shared/ThanksLogosStrip";
 
-
+const contents = [
+  { id: "odour", title: "Odour" },
+  { id: "noise", title: "Noise" },
+  { id: "access-and-movement", title: "Access & Movement" },
+  { id: "water", title: "Water" },
+  { id: "flooding", title: "Flooding" },
+  { id: "habitat", title: "Habitat" },
+  { id: "heritage", title: "Heritage" },
+  { id: "traffic-transport-and-movement", title: "Traffic, Transport & Movement" },
+  { id: "landscape-and-the-loddon-valley", title: "Landscape & the Loddon Valley" },
+  { id: "community-services", title: "Doctors, Dentists, Schools & Community Centre" },
+  { id: "in-conclusion", title: "In Conclusion" },
+];
 
 const galleryStrip = [
-  "/gallery/land-east-1.jpg",
-  "/gallery/land-east-2.jpg",
-  "/gallery/land-east-3.jpg",
-  "/gallery/land-east-4.jpg",
+  "/EOB-2.png",
+  "/EOB-3.png",
+  "/EOB-4.png",
+  "/EOB-5.png",
+  "/EOB-6.png",
+  "/EOB-7.png",
+  "/EOB-8.png",
+  "/EOB-9.png",
+  "/EOB-10.png",
+  "/EOB-11.png",
+  "/EOB-12.png",
+  "/EOB-13.png",
 ];
 
 export default function LandEastOfBasingstokePage() {
@@ -26,7 +46,7 @@ export default function LandEastOfBasingstokePage() {
 
       <main className="bg-paper text-ink">
         {/* HERO */}
-        <section className="relative h-[560px] overflow-hidden">
+        <section className="relative h-[600px] overflow-hidden">
           <Image
             src="/land-east.png"
             alt="Aerial view of the fields at Land East of Basingstoke"
@@ -34,28 +54,37 @@ export default function LandEastOfBasingstokePage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/5 from-40% to-black/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80" />
 
           <div className="relative h-full flex items-center justify-center">
             <div className="max-w-5xl mx-auto px-6 text-center">
-
-
-
-              {/* Title */}
-              <h1 className="text-white font-display font-medium leading-tight
-      text-[clamp(2.5rem,4.5vw,4.5rem)]">
-                Land East of Basingstoke
-              </h1>
+              <p className="tracking-[0.3em] uppercase text-xs mb-6 font-mono text-sage">
+                Areas Under Threat — Site 03
+              </p>
 
               {/* Logo */}
-              <div className="flex justify-center my-8">
+              <div className="flex justify-center mb-6">
                 <Image
-                  src="/symbol-white.webp"   // apna white logo yaha rakho
+                  src="/symbol-white.webp"
                   alt="OBLEC"
                   width={90}
                   height={90}
                   className="object-contain"
                 />
+              </div>
+
+              {/* Title */}
+              <h1 className="text-white font-display font-medium leading-tight text-[clamp(2.5rem,4.5vw,4.5rem)]">
+                Land East of Basingstoke
+              </h1>
+
+              <p className="text-white/75 text-lg mt-6 max-w-2xl mx-auto">
+                Original 450 houses in the 2016 Local Plan — plus a further
+                450 houses proposed in 2024 (Site Ref SPS5.6).
+              </p>
+
+              <div className="flex justify-center mt-10">
+                <FootpathRule className="w-full max-w-xs h-3 text-sage" />
               </div>
             </div>
           </div>
@@ -93,7 +122,7 @@ export default function LandEastOfBasingstokePage() {
                 </P>
               </div>
 
-              <figure className="rounded-sm overflow-hidden border border-sage bg-chalk">
+              <figure className="rounded-lg overflow-hidden border border-sage bg-chalk shadow-md">
                 <div className="relative w-full aspect-[4/5]">
                   <Image
                     src="/EOB.png"
@@ -111,12 +140,31 @@ export default function LandEastOfBasingstokePage() {
           </div>
         </section>
 
-  
-       
+        {/* CONTENTS INDEX — a register of the entry's clauses */}
+        <section className="py-14 bg-chalk">
+          <div className="max-w-5xl mx-auto px-6">
+            <span className="uppercase tracking-[0.25em] text-xs font-mono text-clay">
+              Contents of this entry
+            </span>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3 mt-6">
+              {contents.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className="flex items-center gap-3 hover:opacity-70 transition-opacity"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-clay shrink-0" aria-hidden="true" />
+                  <span className="text-moss-dark">{item.title}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* THE CASE — clause by clause */}
         <section className="py-6 md:py-10">
           <div className="max-w-5xl mx-auto px-6">
-            <CaseSection id="odour" code=""  title="Odour">
+            <CaseSection id="odour" title="Odour">
               <P>
                 The Sewage Treatment Works (STW) was built away from houses.
                 It does not make sense to bring the houses closer to the
@@ -164,7 +212,7 @@ export default function LandEastOfBasingstokePage() {
               </PolicyQuote>
             </CaseSection>
 
-            <CaseSection id="noise" code=""  title="Noise">
+            <CaseSection id="noise" title="Noise">
               <P>
                 In 2016 the Planning Inspector said there would be noise
                 from the A33, the incinerator and the sewage works.
@@ -192,7 +240,7 @@ export default function LandEastOfBasingstokePage() {
               </P>
             </CaseSection>
 
-            <CaseSection id="access-and-movement" code=""  title="Access & Movement">
+            <CaseSection id="access-and-movement" title="Access & Movement">
               <P>
                 The proposal to have a Bus Gate at the bottom of the site,
                 leading into either Bartons Lane or Pyotts Hill, is
@@ -214,7 +262,7 @@ export default function LandEastOfBasingstokePage() {
               <P>Residents haven&rsquo;t seen HCC&rsquo;s traffic survey.</P>
             </CaseSection>
 
-            <CaseSection id="water"  code="" title="Water">
+            <CaseSection id="water" title="Water">
               <P>
                 Where will the water supply for the development come from?
                 No new reservoirs have been built in the last 30 years.
@@ -277,7 +325,7 @@ export default function LandEastOfBasingstokePage() {
               <P>Will a new sewage treatment plant be built? And when?</P>
             </CaseSection>
 
-            <CaseSection id="flooding" code="" title="Flooding">
+            <CaseSection id="flooding" title="Flooding">
               <P>The Local Plan Update acknowledges that there is flood risk in parts of the site.</P>
               <P>This is the comment on page 199, Appendix 4 of the draft Local Plan:</P>
               <PolicyQuote label="Local Plan Update — 4.3">
@@ -307,7 +355,7 @@ export default function LandEastOfBasingstokePage() {
               </P>
             </CaseSection>
 
-            <CaseSection id="habitat" code="" title="Habitat">
+            <CaseSection id="habitat" title="Habitat">
               <P>
                 Damage to the environment: in 2016 the Planning Inspector
                 said the development would result in the loss of key
@@ -323,14 +371,14 @@ export default function LandEastOfBasingstokePage() {
               </P>
             </CaseSection>
 
-            <CaseSection id="heritage" code="" title="Heritage">
+            <CaseSection id="heritage" title="Heritage">
               <P>
                 We note that the Pyotts Hill Entrenchment will be
                 protected. How close will the houses be built to this?
               </P>
             </CaseSection>
 
-            <CaseSection id="traffic-transport-and-movement" code="" title="Traffic, Transport & Movement">
+            <CaseSection id="traffic-transport-and-movement" title="Traffic, Transport & Movement">
               <P>
                 Traffic and noise: the Inspector reported that there would
                 be noise from the A33, the incinerator and the sewage
@@ -359,7 +407,7 @@ export default function LandEastOfBasingstokePage() {
               </P>
             </CaseSection>
 
-            <CaseSection id="landscape-and-the-loddon-valley" code="" title="Landscape & the Loddon Valley Environment">
+            <CaseSection id="landscape-and-the-loddon-valley" title="Landscape & the Loddon Valley Environment">
               <P>
                 Residents in Old Basing and Lychpit Parish value the Loddon
                 Valley environment and want it protected and enhanced.
@@ -380,7 +428,7 @@ export default function LandEastOfBasingstokePage() {
               </P>
             </CaseSection>
 
-            <CaseSection id="community-services" code="" title="Doctors, Dentists, Schools & Community Centre">
+            <CaseSection id="community-services" title="Doctors, Dentists, Schools & Community Centre">
               <P>
                 There will be a mixed reliance on Chineham and the wider
                 area for shopping, schools, doctors and dentists — some of
@@ -408,7 +456,7 @@ export default function LandEastOfBasingstokePage() {
               </P>
             </CaseSection>
 
-            <CaseSection id="in-conclusion" code="" title="In Conclusion">
+            <CaseSection id="in-conclusion" title="In Conclusion">
               <P>
                 The commentary in the Local Plan Update for SPS5.6, Land
                 East of Basingstoke, is optimistic concerning the
@@ -434,21 +482,28 @@ export default function LandEastOfBasingstokePage() {
           </div>
         </section>
 
-        {/* PHOTO STRIP */}
-        <section className="py-16">
+        {/* PHOTO GALLERY */}
+        <section className="py-16 bg-chalk">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
+            <span className="uppercase tracking-[0.25em] text-xs font-mono text-clay">
+              In pictures
+            </span>
+            <h2 className="mt-3 mb-8 font-display font-medium text-[clamp(1.5rem,3vw,2rem)] text-moss-dark">
+              Land East of Basingstoke
+            </h2>
+
+            <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:thin]">
               {galleryStrip.map((src, i) => (
                 <div
                   key={src}
-                  className="relative shrink-0 w-[280px] sm:w-[340px] h-[200px] rounded-sm overflow-hidden snap-start border border-sage"
+                  className="group relative shrink-0 w-[260px] sm:w-[320px] h-[220px] rounded-lg overflow-hidden snap-start border border-sage shadow-sm"
                 >
                   <Image
                     src={src}
                     alt={`Land East of Basingstoke, view ${i + 1}`}
                     fill
-                    sizes="340px"
-                    className="object-cover"
+                    sizes="320px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               ))}
@@ -456,28 +511,13 @@ export default function LandEastOfBasingstokePage() {
           </div>
         </section>
 
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6 pt-16">
           <FootpathRule className="w-full h-3 text-sage" />
         </div>
 
         <OtherAreasSection currentHref="/areas-under-threat/land-east-of-basingstoke" />
 
-        {/* THANK YOU */}
-        <section className="py-20 md:py-24">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="mb-16 flex items-center gap-4">
-              <div className="h-[3px] flex-1 bg-brand" />
-              <span className="shrink-0 font-serif text-xl font-bold tracking-[2px] text-brand md:text-2xl">
-                THANK YOU
-              </span>
-              <div className="h-[3px] flex-1 bg-brand" />
-            </div>
-
-            <div className="mb-10">
-              <PartnerLogosSlider />
-            </div>
-          </div>
-        </section>
+        <ThanksLogosStrip />
       </main>
 
       <Footer />

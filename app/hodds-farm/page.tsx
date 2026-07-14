@@ -104,7 +104,7 @@ export default function HoddsFarmPage() {
               <figure className="rounded-sm overflow-hidden border border-sage bg-chalk">
                 <div className="relative w-full aspect-[4/5]">
                   <Image
-                    src="/areas/hodds-farm-map.jpg"
+                    src="/Hodds-farm-map.png"
                     alt="Site plan showing the proposed Hodds Farm development boundary"
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
