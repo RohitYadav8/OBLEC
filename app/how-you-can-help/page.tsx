@@ -1,6 +1,7 @@
 import { Landmark, MapPinned, ScrollText, Mail } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import { ThanksLogosStrip } from "../components/shared/ThanksLogosStrip";
 
 const groups = [
   {
@@ -82,7 +83,7 @@ export default function WriteToRepresentatives() {
         </div>
       </div>
     </section>
-    
+    <ThanksLogosStrip />
     <Footer />
     </>
 

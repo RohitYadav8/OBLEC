@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import { ThanksLogosStrip } from "../components/shared/ThanksLogosStrip";
 import { Stethoscope, Smile, School, Car, Globe2 } from "lucide-react";
 
 const sections = [
@@ -54,14 +55,6 @@ const sections = [
   },
 ];
 
-const partners = [
-  { name: "SOLVE", logo: "/SOLVE.jpg" },
-  { name: "CPRE — The Countryside Charity", logo: "/cpre-logo.png" },
-  { name: "Old Basing & Lychpit Parish Council", logo: "/images/parish-council.png" },
-  { name: "Visualytes", logo: "/visualytes.png" },
-  { name: "Zebra Creative", logo: "/zebra.png" },
-];
-
 const navLinks = [
   { id: "gp-surgeries", label: "GP Surgeries" },
   { id: "dentists", label: "Dentists" },
@@ -75,7 +68,7 @@ export default function TheFactsPage() {
     <>
       <Navbar />
 
-      <main className="bg-white">
+      <main className="bg-paper">
         {/* Hero */}
         <section className="relative flex h-[420px] items-center justify-center overflow-hidden">
           <Image
@@ -87,26 +80,25 @@ export default function TheFactsPage() {
           />
           <div className="absolute inset-0 bg-black/35" />
           <div className="relative z-10 flex flex-col items-center text-center text-white">
-            
-            <h1 className="font-serif text-5xl md:text-6xl">The Facts</h1>
-           <Image
-      src="/symbol-white.png"   // public/logo-leaf.png
-      alt="Leaf Logo"
-      width={90}
-      height={90}
-      className="mt-6"
-    />
+            <h1 className="font-display font-medium text-5xl md:text-6xl">The Facts</h1>
+            <Image
+              src="/symbol-white.webp"
+              alt="OBLEC"
+              width={90}
+              height={90}
+              className="mt-6 object-contain"
+            />
           </div>
         </section>
 
         {/* Quick jump nav */}
-        <div className="sticky top-[88px] z-30 border-b border-[#4A7C3A]/10 bg-white/95 backdrop-blur">
+        <div className="sticky top-[88px] z-30 border-b border-sage/30 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-[1100px] flex-wrap justify-center gap-2 px-6 py-4">
             {navLinks.map((n) => (
               <a
                 key={n.id}
                 href={`#${n.id}`}
-                className="rounded-full border border-[#4A7C3A]/25 px-4 py-1.5 text-sm font-medium text-[#2F5C2B] transition hover:border-[#4A7C3A] hover:bg-[#F8FAF7]"
+                className="rounded-full border border-[#4A7C3A]/25 px-4 py-1.5 text-sm font-medium text-[#2F5C2B] transition hover:border-[#4A7C3A] hover:bg-chalk"
               >
                 {n.label}
               </a>
@@ -117,7 +109,7 @@ export default function TheFactsPage() {
         {/* Intro */}
         <section className="py-16">
           <div className="mx-auto max-w-[900px] px-6 text-center">
-            <h2 className="font-serif text-3xl text-[#2B2B28] md:text-4xl">
+            <h2 className="font-display font-medium text-3xl text-moss-dark md:text-4xl">
               Environmental &amp; Infrastructure Challenges
             </h2>
             <p className="mx-auto mt-6 max-w-[760px] text-base leading-relaxed text-gray-600">
@@ -159,13 +151,13 @@ export default function TheFactsPage() {
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4A7C3A]/10 text-[#4A7C3A]">
                         <s.icon size={22} strokeWidth={1.75} />
                       </div>
-                      <h3 className="font-serif text-2xl text-[#2B2B28] md:text-3xl">
+                      <h3 className="font-display font-medium text-2xl text-moss-dark md:text-3xl">
                         {s.title}
                       </h3>
                     </div>
 
-                    <div className="mb-5 flex items-baseline gap-3 rounded-xl border border-[#4A7C3A]/15 bg-[#F8FAF7] px-5 py-3">
-                      <span className="font-serif text-3xl text-[#4A7C3A]">
+                    <div className="mb-5 flex items-baseline gap-3 rounded-xl border border-sage/40 bg-chalk px-5 py-3">
+                      <span className="font-display font-medium text-3xl text-[#4A7C3A]">
                         {s.stat.value}
                       </span>
                       <span className="text-sm text-gray-600">
@@ -192,26 +184,26 @@ export default function TheFactsPage() {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4A7C3A]/10 text-[#4A7C3A]">
                 <Globe2 size={22} strokeWidth={1.75} />
               </div>
-              <h3 className="font-serif text-2xl text-[#2B2B28] md:text-3xl">
+              <h3 className="font-display font-medium text-2xl text-moss-dark md:text-3xl">
                 Global Warming &amp; Destruction Of The Countryside
               </h3>
             </div>
 
             <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <div className="rounded-xl border border-[#4A7C3A]/15 bg-[#F8FAF7] px-5 py-4 text-center">
-                <div className="font-serif text-3xl text-[#4A7C3A]">30%</div>
+              <div className="rounded-xl border border-sage/40 bg-chalk px-5 py-4 text-center">
+                <div className="font-display font-medium text-3xl text-[#4A7C3A]">30%</div>
                 <div className="mt-1 text-sm text-gray-600">
                   of emissions come from the building industry
                 </div>
               </div>
-              <div className="rounded-xl border border-[#4A7C3A]/15 bg-[#F8FAF7] px-5 py-4 text-center">
-                <div className="font-serif text-3xl text-[#4A7C3A]">43</div>
+              <div className="rounded-xl border border-sage/40 bg-chalk px-5 py-4 text-center">
+                <div className="font-display font-medium text-3xl text-[#4A7C3A]">43</div>
                 <div className="mt-1 text-sm text-gray-600">
                   bird species supported by the Loddon Valley
                 </div>
               </div>
-              <div className="rounded-xl border border-[#4A7C3A]/15 bg-[#F8FAF7] px-5 py-4 text-center">
-                <div className="font-serif text-3xl text-[#4A7C3A]">9</div>
+              <div className="rounded-xl border border-sage/40 bg-chalk px-5 py-4 text-center">
+                <div className="font-display font-medium text-3xl text-[#4A7C3A]">9</div>
                 <div className="mt-1 text-sm text-gray-600">
                   of those species are on the red list
                 </div>
@@ -256,35 +248,8 @@ export default function TheFactsPage() {
           </div>
         </section>
 
-        {/* THANK YOU + partner marquee */}
-        <section className="pb-16">
-          <div className="mx-auto max-w-[1100px] px-6">
-            <div className="mb-12 flex items-center gap-4">
-              <div className="h-[3px] flex-1 bg-[#8FC15D]" />
-              <span className="shrink-0 font-serif text-xl font-bold tracking-[2px] text-[#4A7C3A] md:text-2xl">
-                THANK YOU
-              </span>
-              <div className="h-[3px] flex-1 bg-[#8FC15D]" />
-            </div>
-          </div>
-
-          <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-center gap-10 px-6">
-            {partners.map((p) => (
-              <div
-                key={p.name}
-                className="relative h-16 w-32 shrink-0 grayscale transition duration-300 hover:grayscale-0"
-              >
-                <Image
-                  src={p.logo}
-                  alt={p.name}
-                  fill
-                  className="object-contain"
-                  sizes="140px"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Thank You + partner logos — shared component, same everywhere */}
+        <ThanksLogosStrip />
       </main>
 
       <Footer />

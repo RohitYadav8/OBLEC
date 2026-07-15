@@ -87,27 +87,27 @@ export default function NewsPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-paper">
         {/* News List */}
         <section className="py-16">
           <div className="mx-auto max-w-[900px] px-6">
             <div className="mb-12 text-center">
-              <span className="text-xs font-semibold uppercase tracking-[4px] text-[#4A7C3A]">
+              <span className="text-xs font-semibold uppercase tracking-[4px] font-mono text-clay">
                 Campaign Updates
               </span>
-              <h1 className="mt-4 font-serif text-3xl text-[#2B2B28] md:text-4xl">
+              <h1 className="mt-4 font-display font-medium text-3xl text-moss-dark md:text-4xl">
                 Latest News
               </h1>
             </div>
 
-            <div className="divide-y divide-[#4A7C3A]/12 rounded-2xl border border-[#4A7C3A]/12">
+            <div className="divide-y divide-sage/40 rounded-2xl border border-sage/40">
               {posts.map((post) => (
                 <Link
                   key={post.title}
                   href={post.href}
-                  className="group block px-6 py-6 transition hover:bg-[#F8FAF7] sm:px-8"
+                  className="group block px-6 py-6 transition hover:bg-chalk sm:px-8"
                 >
-                  <div className="flex items-center gap-3 text-xs text-gray-500">
+                  <div className="flex items-center gap-3 text-xs text-gray-500 font-mono">
                     <span className="flex items-center gap-1.5">
                       <Calendar size={13} className="text-[#8FC15D]" />
                       {post.date}
@@ -124,7 +124,7 @@ export default function NewsPage() {
                     </span>
                   </div>
 
-                  <h2 className="mt-3 font-serif text-lg leading-snug text-[#2B2B28] transition group-hover:text-[#4A7C3A] md:text-xl">
+                  <h2 className="mt-3 font-display font-medium text-lg leading-snug text-moss-dark transition group-hover:text-[#4A7C3A] md:text-xl">
                     {post.title}
                   </h2>
                 </Link>
@@ -134,9 +134,9 @@ export default function NewsPage() {
         </section>
 
         {/* Comment Form */}
-        <section className="bg-[#F8FAF7] py-16">
+        <section className="bg-chalk py-16">
           <div className="mx-auto max-w-[900px] px-6">
-            <h2 className="font-serif text-2xl text-[#2B2B28]">Leave a Reply</h2>
+            <h2 className="font-display font-medium text-2xl text-moss-dark">Leave a Reply</h2>
             <p className="mt-2 text-sm text-gray-500">
               Your email address will not be published. Required fields are
               marked <span className="text-[#4A7C3A]">*</span>
@@ -146,7 +146,7 @@ export default function NewsPage() {
               <div>
                 <label
                   htmlFor="comment"
-                  className="mb-2 block text-sm font-medium text-[#2B2B28]"
+                  className="mb-2 block text-sm font-medium text-moss-dark"
                 >
                   Comment <span className="text-[#4A7C3A]">*</span>
                 </label>
@@ -154,7 +154,7 @@ export default function NewsPage() {
                   id="comment"
                   rows={6}
                   required
-                  className="w-full rounded-xl border border-[#4A7C3A]/20 bg-white px-4 py-3 text-sm text-[#2B2B28] outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
+                  className="w-full rounded-xl border border-sage/50 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
                 />
               </div>
 
@@ -162,7 +162,7 @@ export default function NewsPage() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="mb-2 block text-sm font-medium text-[#2B2B28]"
+                    className="mb-2 block text-sm font-medium text-moss-dark"
                   >
                     Name<span className="text-[#4A7C3A]">*</span>
                   </label>
@@ -170,13 +170,13 @@ export default function NewsPage() {
                     id="name"
                     type="text"
                     required
-                    className="w-full rounded-xl border border-[#4A7C3A]/20 bg-white px-4 py-2.5 text-sm text-[#2B2B28] outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
+                    className="w-full rounded-xl border border-sage/50 bg-white px-4 py-2.5 text-sm text-ink outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-[#2B2B28]"
+                    className="mb-2 block text-sm font-medium text-moss-dark"
                   >
                     Email<span className="text-[#4A7C3A]">*</span>
                   </label>
@@ -184,20 +184,20 @@ export default function NewsPage() {
                     id="email"
                     type="email"
                     required
-                    className="w-full rounded-xl border border-[#4A7C3A]/20 bg-white px-4 py-2.5 text-sm text-[#2B2B28] outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
+                    className="w-full rounded-xl border border-sage/50 bg-white px-4 py-2.5 text-sm text-ink outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="website"
-                    className="mb-2 block text-sm font-medium text-[#2B2B28]"
+                    className="mb-2 block text-sm font-medium text-moss-dark"
                   >
                     Website
                   </label>
                   <input
                     id="website"
                     type="url"
-                    className="w-full rounded-xl border border-[#4A7C3A]/20 bg-white px-4 py-2.5 text-sm text-[#2B2B28] outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
+                    className="w-full rounded-xl border border-sage/50 bg-white px-4 py-2.5 text-sm text-ink outline-none transition focus:border-[#4A7C3A] focus:ring-2 focus:ring-[#4A7C3A]/15"
                   />
                 </div>
               </div>
@@ -207,7 +207,7 @@ export default function NewsPage() {
                   type="checkbox"
                   checked={saveInfo}
                   onChange={(e) => setSaveInfo(e.target.checked)}
-                  className="h-4 w-4 rounded border-[#4A7C3A]/30 text-[#4A7C3A] focus:ring-[#4A7C3A]/30"
+                  className="h-4 w-4 rounded border-sage/50 text-[#4A7C3A] focus:ring-[#4A7C3A]/30"
                 />
                 Save my name, email, and website in this browser for the next
                 time I comment.
