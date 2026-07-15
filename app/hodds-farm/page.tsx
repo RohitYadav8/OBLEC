@@ -7,7 +7,7 @@ import { fontVars } from "../lib/fonts";
 import { FootpathRule } from "../components/shared/FootpathRule";
 import { ImpactItem } from "../components/shared/ImpactItem";
 import { OtherAreasSection } from "../components/shared/OtherAreasSection";
-import { PartnerLogosSlider } from "../components/shared/PartnerLogosSlider";
+import { ThanksLogosStrip } from "../components/shared/ThanksLogosStrip";
 
 export default function HoddsFarmPage() {
   return (
@@ -42,7 +42,18 @@ export default function HoddsFarmPage() {
                 line.
               </p>
 
-              <FootpathRule className="w-full max-w-xs h-3 mt-10 text-sage" />
+              {/* OBLEC white logo */}
+              <div className="mt-8 relative h-16 w-16">
+                <Image
+                  src="/symbol-white.webp"
+                  alt="OBLEC"
+                  fill
+                  className="object-contain"
+                  sizes="64px"
+                />
+              </div>
+
+              <FootpathRule className="w-full max-w-xs h-3 mt-8 text-sage" />
             </div>
           </div>
         </section>
@@ -137,18 +148,7 @@ export default function HoddsFarmPage() {
 
         <OtherAreasSection currentHref="/areas-under-threat/hodds-farm" />
 
-        {/* THANK YOU */}
-        <div className="mb-16 mt-20 flex items-center gap-4 max-w-5xl mx-auto px-6">
-          <div className="h-[3px] flex-1 bg-brand" />
-          <span className="shrink-0 font-serif text-xl font-bold tracking-[2px] text-brand md:text-2xl">
-            THANK YOU
-          </span>
-          <div className="h-[3px] flex-1 bg-brand" />
-        </div>
-
-        <div className="mb-10 max-w-5xl mx-auto px-6">
-          <PartnerLogosSlider />
-        </div>
+        <ThanksLogosStrip />
       </main>
 
       <Footer />

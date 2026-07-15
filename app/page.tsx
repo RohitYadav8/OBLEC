@@ -8,25 +8,34 @@ import SiteOverview from "./components/home/SiteOverview";
 export default function Home() {
   const slides = [
     {
-      image: "/images/land-1.jpg",
-      eyebrow: "Now Under Threat",
+      image: "/Home-1.png",
+      
+      title: "Fight the destruction of our countryside",
+      
+    },
+    {
+      image: "/Home-2.png",
+      title: "Stop sewage spoiling our waterways",
+      
+    },
+    {
+      image: "/Home-3.png",
+      title: "Can our surgeries andhospitals cope?",
+      
+    },
+     {
+      image: "/Home-4.png",
+      title: "Our homes andwoodlans at risk",
+    
+    }, {
+      image: "/Home-5.png",
+      
+      title: "Can our current road infrastructure cope?",
+      
+    }, {
+      image: "/Home-6.png",
       title: "Land East of Basingstoke",
-      subtitle:
-        "Up to 900 homes are proposed on this greenfield site — help us protect it.",
-    },
-    {
-      image: "/images/land-2.jpg",
-      eyebrow: "Our Campaign",
-      title: "Protecting The Loddon Valley",
-      subtitle:
-        "A rare chalk stream and its surrounding countryside deserve better.",
-    },
-    {
-      image: "/images/land-3.jpg",
-      eyebrow: "Get Involved",
-      title: "Every Voice Counts",
-      subtitle:
-        "Join residents of Old Basing & Lychpit in shaping the future of our parish.",
+      
     },
   ];
 

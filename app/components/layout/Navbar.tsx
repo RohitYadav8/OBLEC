@@ -152,7 +152,7 @@ useEffect(() => {
   </Link>
 
   <Link
-    href="#"
+    href="/events"
     className="group relative text-[16px] font-medium text-gray-700 hover:text-[#4A7C3A]"
   >
     Events

@@ -86,6 +86,17 @@ export default function ImageSlider({
                   {slide.subtitle}
                 </p>
               )}
+
+              {/* OBLEC white logo — shown on every slide, below the title */}
+              <div className="mt-6 relative h-16 w-16 md:h-20 md:w-20">
+                <Image
+                  src="/symbol-white.webp"
+                  alt="OBLEC"
+                  fill
+                  className="object-contain"
+                  sizes="80px"
+                />
+              </div>
             </div>
           </div>
         ))}

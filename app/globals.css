@@ -27,19 +27,6 @@
   --font-display: var(--nf-display);
   --font-body: var(--nf-body);
   --font-mono: var(--nf-mono);
-
-  /* --- Shared card / motion tokens ---
-     Used across the site for photo carousels, map figures, and any
-     other bordered image/content card, so every page shares the same
-     rounding, shadow depth, and hover-transition feel.
-     These generate utility classes automatically:
-     rounded-card, shadow-card, shadow-card-hover, ease-smooth,
-     duration-card. */
-  --radius-card: 1rem;
-  --shadow-card: 0 4px 14px -4px rgb(32 43 33 / 0.18);
-  --shadow-card-hover: 0 10px 28px -6px rgb(32 43 33 / 0.28);
-  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-card: 500ms;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,44 +36,13 @@
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-/* --- Site-wide: stop images from being mouse-draggable ---
-   Browsers make every <img> draggable by default. On any page with
-   scrollable image rows/carousels this makes the image visually
-   "jump"/drag with the cursor when the user clicks and moves the
-   mouse. This disables that on every image across the whole site. */
-img {
-  -webkit-user-drag: none;
-  user-drag: none;
-  -webkit-touch-callout: none;
-  user-select: none;
-}
-
-/* --- Shared component classes ---
-   Drop these on any image/figure card across the site instead of
-   repeating a long one-off utility string on every page. */
-@layer components {
-  .site-card {
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--color-sage);
-    overflow: hidden;
-    transition: box-shadow var(--duration-card) var(--ease-smooth),
-      transform var(--duration-card) var(--ease-smooth),
-      border-color var(--duration-card) var(--ease-smooth);
-  }
-
-  .site-card:hover {
-    box-shadow: var(--shadow-card-hover);
-  }
-
-  .site-card-active {
-    border-color: var(--color-moss);
-    box-shadow: 0 0 0 2px rgb(63 93 68 / 0.35), var(--shadow-card-hover);
-  }
+  overflow-x: hidden;
 }

@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { Stethoscope, Leaf, Droplet, Car } from "lucide-react";
-import { PartnerLogosSlider } from "../../components/shared/PartnerLogosSlider";
 import { OtherAreasSection } from "../../components/shared/OtherAreasSection";
+import { ThanksLogosStrip } from "../../components/shared/ThanksLogosStrip";
 
 const concerns = [
   { label: "GPs", icon: Stethoscope, note: "Local surgeries already at capacity" },
@@ -16,7 +15,7 @@ export default function SiteOverview() {
   return (
     <section className="bg-white py-20">
       {/* Banner */}
-      <div className="bg-brand py-4 text-center">
+      <div className="bg-[#4A7C3A] py-4 text-center">
         <h2 className="text-sm font-bold uppercase tracking-[2px] text-white md:text-base">
           OLD001 &mdash; Land East of Basingstoke
         </h2>
@@ -30,7 +29,7 @@ export default function SiteOverview() {
       <div className="mx-auto max-w-[1200px] px-6 pt-16">
         {/* Key Concerns */}
         <div className="mb-20 text-center">
-          <span className="text-xs font-semibold uppercase tracking-[4px] text-brand">Key Concerns</span>
+          <span className="text-xs font-semibold uppercase tracking-[4px] text-[#4A7C3A]">Key Concerns</span>
           <h3 className="mt-3 font-serif text-2xl text-[#2B2B28] md:text-3xl">
             What This Development Puts At Risk
           </h3>
@@ -38,9 +37,9 @@ export default function SiteOverview() {
             {concerns.map(({ label, icon: Icon, note }) => (
               <div
                 key={label}
-                className="group flex flex-col items-center gap-4 rounded-2xl border border-brand/15 px-4 py-8 text-center transition hover:border-brand hover:bg-[#F8FAF7]"
+                className="group flex flex-col items-center gap-4 rounded-2xl border border-[#4A7C3A]/15 px-4 py-8 text-center transition hover:border-[#4A7C3A] hover:bg-[#F8FAF7]"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-brand-light text-[#2F5C2B] transition group-hover:bg-brand group-hover:text-white">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#8FC15D] text-[#2F5C2B] transition group-hover:bg-[#4A7C3A] group-hover:text-white">
                   <Icon size={26} strokeWidth={1.75} />
                 </div>
                 <div>
@@ -54,35 +53,17 @@ export default function SiteOverview() {
 
         {/* Support Message */}
         <div className="mt-20 mb-6 text-center">
-          <div className="mx-auto mb-10 h-[3px] w-full bg-brand-light" />
+          <div className="mx-auto mb-10 h-[3px] w-full bg-[#8FC15D]" />
           <span className="font-serif text-2xl leading-relaxed text-moss-dark md:text-3xl">
             Please support OBLEC by opposing more housing development
             <br />
             and help us to protect our cherished Loddon Valley.
           </span>
         </div>
-
-        {/* OBLEC leaf logo — sits close beneath the support message */}
-        <div className="mb-10 flex justify-center">
-          <div className="relative h-20 w-20">
-            <Image src="/logo-leaf.webp" alt="OBLEC leaf logo" fill className="object-contain" sizes="80px" />
-          </div>
-        </div>
-
-        {/* THANK YOU Divider */}
-        <div className="mb-16 flex items-center gap-4">
-          <div className="h-[3px] flex-1 bg-brand" />
-          <span className="shrink-0 font-serif text-xl font-bold tracking-[2px] text-brand md:text-2xl">
-            THANK YOU
-          </span>
-          <div className="h-[3px] flex-1 bg-brand" />
-        </div>
-
-        {/* Partner Logo Slider — premium */}
-        <div className="mb-10">
-          <PartnerLogosSlider />
-        </div>
       </div>
+
+      {/* Thank You + partner/supporter logos — shared component, same everywhere */}
+      <ThanksLogosStrip />
     </section>
   );
 }

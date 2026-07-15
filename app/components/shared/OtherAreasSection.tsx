@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ALL_AREAS = [
-  { name: "Hodds Farm", image: "/hodds-farm.png", href: "/areas-under-threat/hodds-farm" },
-  { name: "Lodge Farm", image: "/lodge-farm.png", href: "/areas-under-threat/lodge-farm" },
+  { name: "Hodds Farm", image: "/hodds-farm.png", href: "/hodds-farm" },
+  { name: "Lodge Farm", image: "/lodge-farm.png", href: "/lodge-farm" },
   {
     name: "Land East of Basingstoke",
     image: "/land-east.png",
-    href: "/areas-under-threat/land-east-of-basingstoke",
+    href: "/east-of-basingstoke",
   },
-  { name: "River Loddon", image: "/river-loddon.png", href: "/areas-under-threat/river-loddon" },
+  { name: "River Loddon", image: "/river-loddon.png", href: "/river-loddon" },
 ];
 
 /**
