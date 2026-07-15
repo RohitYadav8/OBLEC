@@ -9,14 +9,7 @@ import { ArrowUpRight, ChevronDown } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
-/* ---------------------------------------------------------------
-   Type system
-   Display  – Fraunces: soft ink-trap serif, reads as parish-notice /
-              land-registry rather than corporate-green-NGO default.
-   Body     – Work Sans: quiet, legible, gets out of the way.
-   Utility  – IBM Plex Mono: for role tags, the eyebrow, and the
-              housing figures — treated like map-legend data.
------------------------------------------------------------------ */
+
 const display = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -243,13 +236,7 @@ export default function CampaignPartnersPage() {
 
           <div className="relative h-full flex items-end">
             <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16">
-              <p
-                className="tracking-[0.25em] uppercase text-xs mb-5"
-                style={{ fontFamily: "var(--font-mono)", color: "var(--sage)" }}
-              >
-                Old Basing &amp; Lychpit — Parish Register
-              </p>
-
+              
               <h1
                 className="text-white leading-[0.95]"
                 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.75rem, 6vw, 5.25rem)", fontWeight: 500 }}
@@ -259,10 +246,7 @@ export default function CampaignPartnersPage() {
                 <span style={{ fontStyle: "italic", fontWeight: 400 }}>campaign</span>
               </h1>
 
-              <p className="text-white/75 text-lg mt-6 max-w-xl">
-                A record of the people, charities and studios standing behind the
-                effort to protect our fields, footpaths and river valley.
-              </p>
+              
 
               <FootpathRule className="w-full max-w-xs h-3 mt-10" style={{ color: "var(--sage)" }} />
             </div>
