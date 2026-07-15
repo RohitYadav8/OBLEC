@@ -9,10 +9,10 @@ const quickLinks = [
 ];
 
 const areasOfConcern = [
-  { label: "Hodds Farm", href: "/areas-under-threat/hodds-farm" },
-  { label: "Lodge Farm", href: "/areas-under-threat/lodge-farm" },
-  { label: "East of Basingstoke", href: "/areas-under-threat/east-of-basingstoke" },
-  { label: "River Loddon", href: "/areas-under-threat/river-loddon" },
+  { label: "Hodds Farm", href: "/hodds-farm" },
+  { label: "Lodge Farm", href: "/lodge-farm" },
+  { label: "East of Basingstoke", href: "/east-of-basingstoke" },
+  { label: "River Loddon", href: "/bpm river-loddon" },
 ];
 
 export default function Footer() {
