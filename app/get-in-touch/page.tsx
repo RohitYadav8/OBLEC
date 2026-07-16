@@ -31,10 +31,10 @@ export default function GetInTouchPage() {
       <Navbar />
 
       <main className="min-h-screen bg-white">
-        <section className="py-20">
+         <section className="pt-8 pb-20">
           <div className="mx-auto max-w-[1100px] px-6">
             {/* Contact Us heading with envelope graphic */}
-            <div className="mb-16 flex flex-col items-center text-center">
+            <div className="mb-12 flex flex-col items-center text-center">
         <div className="relative aspect-[300/199] w-full max-w-[600px]">
                 <Image
                   src="/contact-us.png"
