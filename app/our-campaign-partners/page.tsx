@@ -150,15 +150,17 @@ export default function CampaignPartnersPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/35 to-ink/85" />
 
-          <div className="relative h-full flex items-end">
-            <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16">
-              <h1 className="text-white leading-[0.95] font-display font-medium text-[clamp(2.75rem,6vw,5.25rem)]">
-                Join the
-                <br />
-                <span className="italic font-normal">campaign</span>
-              </h1>
+          <div className="relative h-full flex items-start">
+            <div className="w-full max-w-7xl mx-auto px-6 md:px-10 pt-24 md:pt-32">
+              <div className="max-w-2xl">
+               <h1 className="font-display text-[clamp(2.5rem,6vw,4rem)] font-medium text-white">
+                Join the Campaign
+               </h1>
 
-              <FootpathRule className="w-full max-w-xs h-3 mt-10 text-sage" />
+                <p className="mt-6 text-lg text-white/90">
+                  We Help The Environment
+                </p>
+              </div>
             </div>
           </div>
         </section>
