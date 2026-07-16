@@ -99,7 +99,7 @@ export default function CampaignPartnersPage() {
       ref: "02",
       name: "Des O'Donnell",
       role: "CPRE Hampshire — The Countryside Charity",
-      image: "/CPRE-Hampshire-LOGO.png",
+      image: "/CPRE-Hampshire-Logo.png",
       kind: "logo",
       paragraphs: [
         "At CPRE Hampshire, the countryside charity, we believe in countryside and green spaces that are accessible to all, rich in nature and play a crucial role in responding to the climate emergency. Sadly today, Hampshire's countryside faces many challenges including population growth, climate change, pressures to grow the economy and build more houses. CPRE Hampshire is an independent charity working to promote, protect and enhance local countryside in a way that underpins the economy and maintains the balance between necessary development and a thriving Hampshire countryside.",
