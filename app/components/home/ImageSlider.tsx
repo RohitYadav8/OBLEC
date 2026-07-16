@@ -90,7 +90,7 @@ export default function ImageSlider({
               {/* OBLEC white logo — shown on every slide, below the title */}
               <div className="mt-6 relative h-16 w-16 md:h-20 md:w-20">
                 <Image
-                  src="/symbol-white.webp"
+                  src="/Symbol-White-logo.png"
                   alt="OBLEC"
                   fill
                   className="object-contain"

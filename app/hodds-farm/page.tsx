@@ -18,7 +18,7 @@ export default function HoddsFarmPage() {
         {/* HERO */}
         <section className="relative h-[560px] overflow-hidden bg-moss-dark">
           <Image
-            src="/hodds-farm.png"
+            src="/hodds-farm-1.png"
             alt="Aerial view of the fields at Hodds Farm, Old Basing"
             fill
             className="object-cover opacity-60"
@@ -26,34 +26,31 @@ export default function HoddsFarmPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-ink/30 to-ink/[0.88]" />
 
-          <div className="relative h-full flex items-end">
-            <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16">
-              <p className="tracking-[0.25em] uppercase text-xs mb-5 font-mono text-sage">
-                Areas Under Threat — Site 01
-              </p>
+          <div className="relative h-full flex items-center justify-center">
+            <div className="max-w-4xl mx-auto px-6 text-center">
+              
 
               <h1 className="text-white leading-[0.95] font-display font-medium text-[clamp(2.75rem,6vw,5.25rem)]">
                 Hodds Farm
               </h1>
 
-              <p className="text-white/75 text-lg mt-6 max-w-xl">
-                800 proposed homes on the eastern edge of Old Basing — fields,
-                hedgerows and ancient woodland between the A30 and the railway
-                line.
-              </p>
-
-              {/* OBLEC white logo */}
-              <div className="mt-8 relative h-16 w-16">
-                <Image
-                  src="/symbol-white.webp"
-                  alt="OBLEC"
-                  fill
-                  className="object-contain"
-                  sizes="64px"
-                />
+             
+              {/* OBLEC white logo — centered below the subtitle */}
+              <div className="flex justify-center mt-8">
+                <div className="relative h-16 w-16">
+                  <Image
+                    src="/Symbol-White-logo.png"
+                    alt="OBLEC"
+                    fill
+                    className="object-contain"
+                    sizes="64px"
+                  />
+                </div>
               </div>
 
-              <FootpathRule className="w-full max-w-xs h-3 mt-8 text-sage" />
+              <div className="flex justify-center mt-8">
+                
+              </div>
             </div>
           </div>
         </section>

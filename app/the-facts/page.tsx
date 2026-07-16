@@ -82,7 +82,7 @@ export default function TheFactsPage() {
           <div className="relative z-10 flex flex-col items-center text-center text-white">
             <h1 className="font-display font-medium text-5xl md:text-6xl">The Facts</h1>
             <Image
-              src="/symbol-white-logo.png"
+              src="/Symbol-White-logo.png"
               alt="OBLEC"
               width={90}
               height={90}

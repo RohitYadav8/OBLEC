@@ -2,59 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type React from "react";
 import { useState } from "react";
-import { Fraunces, Work_Sans, IBM_Plex_Mono } from "next/font/google";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-
-
-const display = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
-});
-const body = Work_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-body",
-});
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-});
-
-/* ---------------------------------------------------------------
-   Signature element: a footpath / contour rule, the way a public
-   right-of-way is marked on an Ordnance Survey map — a dashed line
-   with perpendicular ticks. Used as the one recurring graphic
-   motif tying hero, dividers and section breaks together.
------------------------------------------------------------------ */
-function FootpathRule({
-  className = "",
-  style,
-}: {
-  className?: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <svg
-      viewBox="0 0 400 12"
-      preserveAspectRatio="none"
-      className={className}
-      style={style}
-      aria-hidden="true"
-    >
-      <line x1="0" y1="6" x2="400" y2="6" stroke="currentColor" strokeWidth="1.5" strokeDasharray="10 8" />
-      {Array.from({ length: 11 }).map((_, i) => (
-        <line key={i} x1={i * 40} y1="1" x2={i * 40} y2="11" stroke="currentColor" strokeWidth="1.5" />
-      ))}
-    </svg>
-  );
-}
+import { FootpathRule } from "../components/shared/FootpathRule";
 
 type Partner = {
   ref: string;
@@ -67,14 +19,8 @@ type Partner = {
   linkLabel?: string;
 };
 
-/* ---------------------------------------------------------------
-   PartnerBio: the lead paragraph is set as a small drop-cap intro
-   — the way the opening line of a register entry is set apart —
-   so the page reads as one confident sentence per person rather
-   than a wall of text. Anything after the first paragraph is
-   filed under "Read full entry", a disclosure that keeps the list
-   scannable while the complete statement stays one tap away.
------------------------------------------------------------------ */
+/* PartnerBio: the lead paragraph gets a drop-cap intro; anything
+   after the first paragraph is filed under "Read full entry". */
 function PartnerBio({ paragraphs }: { paragraphs: string[] }) {
   const [open, setOpen] = useState(false);
   const [lead, ...rest] = paragraphs;
@@ -83,19 +29,11 @@ function PartnerBio({ paragraphs }: { paragraphs: string[] }) {
 
   return (
     <div className="mt-4 max-w-2xl">
-      <p className="leading-8" style={{ color: "#3d463e" }}>
+      <p className="leading-8 text-body">
         <span
           aria-hidden="true"
-          style={{
-            fontFamily: "var(--font-display)",
-            color: "var(--moss-dark)",
-            float: "left",
-            lineHeight: "0.78",
-            fontSize: "3.4rem",
-            fontWeight: 500,
-            paddingRight: "0.35rem",
-            marginTop: "0.3rem",
-          }}
+          className="float-left font-display font-medium text-moss-dark pr-1.5 mt-1"
+          style={{ lineHeight: "0.78", fontSize: "3.4rem" }}
         >
           {firstLetter}
         </span>
@@ -114,7 +52,7 @@ function PartnerBio({ paragraphs }: { paragraphs: string[] }) {
             <div className="overflow-hidden">
               <div className="space-y-4 pt-4">
                 {rest.map((para, i) => (
-                  <p key={i} className="leading-8" style={{ color: "#3d463e" }}>
+                  <p key={i} className="leading-8 text-body">
                     {para}
                   </p>
                 ))}
@@ -126,8 +64,7 @@ function PartnerBio({ paragraphs }: { paragraphs: string[] }) {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
-            className="flex items-center gap-2 mt-4 text-xs uppercase tracking-[0.18em] font-medium"
-            style={{ fontFamily: "var(--font-mono)", color: "var(--clay)" }}
+            className="flex items-center gap-2 mt-4 text-xs uppercase tracking-[0.18em] font-medium font-mono text-clay"
           >
             {open ? "Show less" : "Read full entry"}
             <ChevronDown
@@ -198,27 +135,12 @@ export default function CampaignPartnersPage() {
   ];
 
   return (
-    <div
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
-      style={{ fontFamily: "var(--font-body)" }}
-    >
-      <style jsx global>{`
-        :root {
-          --ink: #202b21;
-          --moss: #3f5d44;
-          --moss-dark: #2c4432;
-          --sage: #b8c6b4;
-          --chalk: #f2efe4;
-          --paper: #fbfaf4;
-          --clay: #a85a2e;
-        }
-      `}</style>
-
+    <>
       <Navbar />
 
-      <main style={{ background: "var(--paper)", color: "var(--ink)" }}>
+      <main className="bg-paper text-ink">
         {/* HERO */}
-        <section className="relative h-[640px] overflow-hidden" style={{ background: "var(--moss-dark)" }}>
+        <section className="relative h-[640px] overflow-hidden bg-moss-dark">
           <Image
             src="/campaign-partners.jpg"
             alt="Volunteer holding a seedling from the Loddon valley"
@@ -226,36 +148,23 @@ export default function CampaignPartnersPage() {
             className="object-cover opacity-70"
             priority
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(32,43,33,0.55) 0%, rgba(32,43,33,0.35) 45%, rgba(32,43,33,0.85) 100%)",
-            }}
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/35 to-ink/85" />
 
           <div className="relative h-full flex items-end">
             <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16">
-              
-              <h1
-                className="text-white leading-[0.95]"
-                style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.75rem, 6vw, 5.25rem)", fontWeight: 500 }}
-              >
+              <h1 className="text-white leading-[0.95] font-display font-medium text-[clamp(2.75rem,6vw,5.25rem)]">
                 Join the
                 <br />
-                <span style={{ fontStyle: "italic", fontWeight: 400 }}>campaign</span>
+                <span className="italic font-normal">campaign</span>
               </h1>
 
-              
-
-              <FootpathRule className="w-full max-w-xs h-3 mt-10" style={{ color: "var(--sage)" }} />
+              <FootpathRule className="w-full max-w-xs h-3 mt-10 text-sage" />
             </div>
           </div>
         </section>
-       
 
         {/* PARTNERS — a register, not a card grid */}
-        <section className="pb-8" style={{ background: "var(--paper)" }}>
+        <section className="pb-8 bg-paper">
           <div className="max-w-5xl mx-auto px-6">
             {partners.map((partner) => (
               <div key={partner.ref}>
@@ -263,10 +172,7 @@ export default function CampaignPartnersPage() {
                   {/* image — photos get a framed roundel, logos get a clean strip */}
                   <div className="flex md:flex-col items-center md:items-start gap-6">
                     {partner.kind === "photo" ? (
-                      <div
-                        className="relative w-28 h-28 md:w-[150px] md:h-[150px] shrink-0 overflow-hidden rounded-full"
-                        style={{ background: "var(--chalk)", border: "1px solid var(--sage)" }}
-                      >
+                      <div className="relative w-28 h-28 md:w-[150px] md:h-[150px] shrink-0 overflow-hidden rounded-full bg-chalk border border-sage">
                         <Image
                           src={partner.image}
                           alt={partner.name}
@@ -286,41 +192,24 @@ export default function CampaignPartnersPage() {
                         />
                       </div>
                     )}
-                    <span
-                      className="md:hidden text-2xl"
-                      style={{ fontFamily: "var(--font-mono)", color: "var(--sage)" }}
-                    >
+                    <span className="md:hidden text-2xl font-mono text-sage">
                       {partner.ref}
                     </span>
                   </div>
 
                   <div className="min-w-0">
                     <div className="flex items-baseline gap-4">
-                      <span
-                        className="hidden md:inline text-sm"
-                        style={{ fontFamily: "var(--font-mono)", color: "var(--sage)" }}
-                      >
+                      <span className="hidden md:inline text-sm font-mono text-sage">
                         {partner.ref}
                       </span>
                       {partner.role && (
-                        <span
-                          className="uppercase tracking-[0.18em] text-xs"
-                          style={{ fontFamily: "var(--font-mono)", color: "var(--clay)" }}
-                        >
+                        <span className="uppercase tracking-[0.18em] text-xs font-mono text-clay">
                           {partner.role}
                         </span>
                       )}
                     </div>
 
-                    <h3
-                      className="mt-3"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        fontWeight: 500,
-                        fontSize: "clamp(1.75rem, 3vw, 2.4rem)",
-                        color: "var(--moss-dark)",
-                      }}
-                    >
+                    <h3 className="mt-3 font-display font-medium text-[clamp(1.75rem,3vw,2.4rem)] text-moss-dark">
                       {partner.name}
                     </h3>
 
@@ -331,8 +220,7 @@ export default function CampaignPartnersPage() {
                         href={partner.linkHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 mt-6 text-sm font-medium group w-fit"
-                        style={{ color: "var(--moss)" }}
+                        className="flex items-center gap-2 mt-6 text-sm font-medium group w-fit text-moss"
                       >
                         {partner.linkLabel ?? "Learn more"}
                         <ArrowUpRight
@@ -344,20 +232,17 @@ export default function CampaignPartnersPage() {
                   </div>
                 </div>
 
-                <FootpathRule className="w-full h-3" style={{ color: "var(--sage)" }} />
+                <FootpathRule className="w-full h-3 text-sage" />
               </div>
             ))}
           </div>
         </section>
 
         {/* PHOTOGRAPHERS */}
-        <section className="py-24" style={{ background: "var(--moss-dark)" }}>
+        <section className="py-24 bg-moss-dark">
           <div className="max-w-4xl mx-auto px-6">
             <div className="flex flex-col md:flex-row gap-8 items-center text-center md:text-left">
-              <div
-                className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 bg-white"
-                style={{ border: "1px solid var(--sage)" }}
-              >
+              <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 bg-white border border-sage">
                 <Image
                   src="/camera.png"
                   alt="Camera icon"
@@ -368,11 +253,7 @@ export default function CampaignPartnersPage() {
               </div>
 
               <div>
-                
-                <h3
-                  className="mt-2 text-white"
-                  style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "1.85rem" }}
-                >
+                <h3 className="mt-2 text-white font-display font-medium text-[1.85rem]">
                   Photographers
                 </h3>
                 <p className="mt-3 leading-7 text-white/70 max-w-xl">
@@ -386,6 +267,6 @@ export default function CampaignPartnersPage() {
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }

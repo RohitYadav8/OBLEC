@@ -58,14 +58,18 @@ export default function LandEastOfBasingstokePage() {
 
           <div className="relative h-full flex items-center justify-center">
             <div className="max-w-5xl mx-auto px-6 text-center">
-              <p className="tracking-[0.3em] uppercase text-xs mb-6 font-mono text-sage">
-                Areas Under Threat — Site 03
-              </p>
+             
+              {/* Title */}
+              <h1 className="text-white font-display font-medium leading-tight text-[clamp(2.5rem,4.5vw,4.5rem)]">
+                Land East of Basingstoke
+              </h1>
 
-              {/* Logo */}
-              <div className="flex justify-center mb-6">
+             
+
+              {/* Logo — centered, below the subtitle */}
+              <div className="flex justify-center mt-8">
                 <Image
-                  src="/symbol-white.webp"
+                  src="/Symbol-White-logo.png"
                   alt="OBLEC"
                   width={90}
                   height={90}
@@ -73,18 +77,8 @@ export default function LandEastOfBasingstokePage() {
                 />
               </div>
 
-              {/* Title */}
-              <h1 className="text-white font-display font-medium leading-tight text-[clamp(2.5rem,4.5vw,4.5rem)]">
-                Land East of Basingstoke
-              </h1>
-
-              <p className="text-white/75 text-lg mt-6 max-w-2xl mx-auto">
-                Original 450 houses in the 2016 Local Plan — plus a further
-                450 houses proposed in 2024 (Site Ref SPS5.6).
-              </p>
-
-              <div className="flex justify-center mt-10">
-                <FootpathRule className="w-full max-w-xs h-3 text-sage" />
+              <div className="flex justify-center mt-8">
+                
               </div>
             </div>
           </div>

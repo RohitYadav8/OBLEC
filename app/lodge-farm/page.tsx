@@ -18,7 +18,7 @@ export default function LodgeFarmPage() {
         {/* HERO */}
         <section className="relative h-[560px] overflow-hidden">
           <Image
-            src="/lodge-farm.png"
+            src="/lodge-farm-1.png"
             alt="Aerial view of the fields at Lodge Farm, Old Basing"
             fill
             className="object-cover"
@@ -26,23 +26,28 @@ export default function LodgeFarmPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/5 from-40% to-black/75" />
 
-          <div className="relative h-full flex items-end">
-            <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16">
-              <p className="tracking-[0.25em] uppercase text-xs mb-5 font-mono text-sage">
-                Areas Under Threat — Site 02
-              </p>
+          <div className="relative h-full flex items-center justify-center">
+            <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16 text-center">
+             
 
               <h1 className="text-white leading-[0.95] font-display font-medium text-[clamp(2.75rem,6vw,5.25rem)]">
                 Lodge Farm
               </h1>
 
-              <p className="text-white/75 text-lg mt-6 max-w-xl">
-                The Borough Council has proposed this site to build 600–900
-                houses on the eastern edge of Old Basing, against the River
-                Loddon.
-              </p>
+             
 
-              <FootpathRule className="w-full max-w-xs h-3 mt-10 text-sage" />
+              {/* OBLEC white logo */}
+              <div className="flex justify-center mt-8">
+                             <div className="relative h-16 w-16">
+                               <Image
+                                 src="/Symbol-White-logo.png"
+                                 alt="OBLEC"
+                                 fill
+                                 className="object-contain"
+                                 sizes="64px"
+                               />
+                             </div>
+                           </div>
             </div>
           </div>
         </section>

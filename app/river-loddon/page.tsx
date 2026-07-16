@@ -34,9 +34,6 @@ export default function RiverLoddonPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const isProgrammaticScroll = useRef(false);
 
-  // Scroll smoothly to a specific card by index (used by arrow buttons / dots).
-  // Uses scrollLeft math instead of scrollIntoView — scrollIntoView can fight
-  // with scroll-snap on the container and cause a left-right jitter.
   const scrollToIndex = useCallback((index: number) => {
     const clamped = Math.max(0, Math.min(index, carouselImages.length - 1));
     const card = cardRefs.current[clamped];
@@ -49,7 +46,6 @@ export default function RiverLoddonPage() {
     const targetLeft = card.offsetLeft - el.offsetLeft;
     el.scrollTo({ left: targetLeft, behavior: "smooth" });
 
-    // release the "programmatic" lock after the smooth-scroll settles
     window.clearTimeout((el as any)._scrollLock);
     (el as any)._scrollLock = window.setTimeout(() => {
       isProgrammaticScroll.current = false;
@@ -59,10 +55,6 @@ export default function RiverLoddonPage() {
   const handlePrev = () => scrollToIndex(activeIndex - 1);
   const handleNext = () => scrollToIndex(activeIndex + 1);
 
-  // Keep activeIndex in sync if the user scrolls/drags manually,
-  // so the arrows always continue from the right place.
-  // Debounced (only runs once scrolling has paused) instead of on every
-  // scroll frame — running it mid-scroll was what caused the jitter.
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -115,14 +107,25 @@ export default function RiverLoddonPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/5 from-40% to-black/75" />
 
-          <div className="relative h-full flex items-end">
-            <div className="max-w-7xl mx-auto px-6 md:px-10 w-full pb-16">
-              
+          <div className="relative h-full flex items-center justify-center">
+            <div className="max-w-4xl mx-auto px-6 text-center">
+
               <h1 className="text-white leading-[0.95] font-display font-medium text-[clamp(2.75rem,6vw,5.25rem)]">
                 River Loddon
               </h1>
 
-              <FootpathRule className="w-full max-w-xs h-3 mt-10 text-sage" />
+              {/* OBLEC white logo — centered below the title */}
+              <div className="flex justify-center mt-8">
+                <div className="relative h-16 w-16">
+                  <Image
+                    src="/Symbol-White-logo.png"
+                    alt="OBLEC"
+                    fill
+                    className="object-contain"
+                    sizes="64px"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>

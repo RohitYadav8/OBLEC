@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* --- Site design tokens (Old Basing / Loddon Valley pages) --- */
+  /* Site Colors */
   --color-ink: #202b21;
   --color-moss: #3f5d44;
   --color-moss-dark: #2c4432;
@@ -21,9 +21,7 @@
   --color-brand: #4A7C3A;
   --color-brand-light: #8FC15D;
 
-  /* Site typefaces — set on <html>/<body> via fonts.ts (next/font),
-     using --nf-* variable names to avoid colliding with these
-     --font-* theme tokens (see lib/fonts.ts for why). */
+  /* Fonts */
   --font-display: var(--nf-display);
   --font-body: var(--nf-body);
   --font-mono: var(--nf-mono);
@@ -43,6 +41,6 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  font-family: var(--font-body);
 }

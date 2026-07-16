@@ -12,7 +12,7 @@ const areasOfConcern = [
   { label: "Hodds Farm", href: "/hodds-farm" },
   { label: "Lodge Farm", href: "/lodge-farm" },
   { label: "East of Basingstoke", href: "/east-of-basingstoke" },
-  { label: "River Loddon", href: "/bpm river-loddon" },
+  { label: "River Loddon", href: "/river-loddon" },
 ];
 
 export default function Footer() {
@@ -20,23 +20,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-gradient-to-b from-[#5C9448] to-[#4A7C3A] pb-10 pt-16 text-white">
       <div className="mx-auto max-w-[1300px] px-8">
         {/* Facebook icon */}
-        <div className="mb-14 flex justify-center">
-          <Link
-            href="#"
-            aria-label="OBLEC on Facebook"
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-[#4A7C3A] shadow-md transition hover:bg-white"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z" />
-            </svg>
-          </Link>
-        </div>
+
 
         {/* Columns */}
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
@@ -86,7 +70,28 @@ export default function Footer() {
             </a>
           </div>
         </div>
+        {/* Facebook icon */}
+        <div className="py-8 flex justify-center">
+          <Link
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="OBLEC on Facebook"
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-[#4A7C3A] shadow-md transition hover:scale-105 hover:bg-white"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z" />
+            </svg>
+          </Link>
+        </div>
 
+      
         {/* Divider */}
         <div className="mt-14 border-t border-white/35" />
 
