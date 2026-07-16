@@ -19,13 +19,12 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-gradient-to-b from-[#5C9448] to-[#4A7C3A] pb-10 pt-16 text-white">
       <div className="mx-auto max-w-[1300px] px-8">
-        {/* Facebook icon */}
-
-
         {/* Columns */}
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
+          {/* Quick Links */}
           <div>
             <h3 className="font-serif text-xl">Quick Links</h3>
+
             <ul className="mt-6 space-y-3.5">
               {quickLinks.map((link) => (
                 <li key={link.label}>
@@ -40,8 +39,10 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Areas */}
           <div>
             <h3 className="font-serif text-xl">Areas of Concern</h3>
+
             <ul className="mt-6 space-y-3.5">
               {areasOfConcern.map((link) => (
                 <li key={link.label}>
@@ -56,11 +57,14 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
             <h3 className="font-serif text-xl">OBLEC</h3>
+
             <p className="mt-6 text-[15px] leading-relaxed text-white/90">
               Old Basing &amp; Lychpit Environment Campaign
             </p>
+
             <a
               href="mailto:oblecteam@outlook.com"
               className="mt-4 flex items-center gap-2.5 text-[15px] text-white/90 transition hover:text-white"
@@ -70,18 +74,19 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        {/* Facebook icon */}
-        <div className="py-8 flex justify-center">
+
+        {/* Facebook Icon */}
+        <div className="flex justify-center py-10">
           <Link
-            href="https://www.facebook.com/"
+            href="https://www.facebook.com/people/Old-Basing-and-Lychpit-Environment-Campaign/61555003000332/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="OBLEC on Facebook"
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-[#4A7C3A] shadow-md transition hover:scale-105 hover:bg-white"
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#4A7C3A] shadow-md transition hover:scale-105 hover:bg-gray-100"
           >
             <svg
-              width="20"
-              height="20"
+              width="22"
+              height="22"
               viewBox="0 0 24 24"
               fill="currentColor"
               aria-hidden="true"
@@ -91,14 +96,15 @@ export default function Footer() {
           </Link>
         </div>
 
-      
         {/* Divider */}
-        <div className="mt-14 border-t border-white/35" />
+        <div className="border-t border-white/35" />
 
         {/* Copyright */}
-        <div className="border-t border-white/35 py-6 text-center text-sm text-white/85">
+        <div className="py-6 text-center text-sm text-white/85">
           © Oblec. All Rights Reserved. Website designed and developed by{" "}
-          <span className="font-medium text-white">Visualytes Limited</span>
+          <span className="font-medium text-white">
+            Visualytes Limited
+          </span>
         </div>
       </div>
     </footer>
