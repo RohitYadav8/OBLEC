@@ -140,24 +140,23 @@ export default function CampaignPartnersPage() {
 
       <main className="bg-paper text-ink">
         {/* HERO */}
-        <section className="relative h-[640px] overflow-hidden bg-moss-dark">
+        <section className="relative h-[360px] md:h-[440px] overflow-hidden bg-moss-dark">
           <Image
             src="/campaign-partners.jpg"
             alt="Volunteer holding a seedling from the Loddon valley"
             fill
-            className="object-cover opacity-70"
+            className="object-cover object-center opacity-80"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/35 to-ink/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/25 to-ink/80" />
 
-          <div className="relative h-full flex items-start">
-            <div className="w-full max-w-7xl mx-auto px-6 md:px-10 pt-24 md:pt-32">
+          <div className="relative h-full flex flex-col items-start justify-start">
+            <div className="w-full max-w-7xl mx-auto px-2 md:px-4 pt-10 md:pt-14">
               <div className="max-w-2xl">
-               <h1 className="font-display text-[clamp(2.5rem,6vw,4rem)] font-medium text-white">
-                Join the Campaign
-               </h1>
-
-                <p className="mt-6 text-lg text-white/90">
+                <h1 className="font-display text-[clamp(2.25rem,5.5vw,4rem)] font-medium text-white leading-tight">
+                  Join the Campaign
+                </h1>
+                <p className="mt-5 text-xl md:text-2xl text-white/90">
                   We Help The Environment
                 </p>
               </div>
