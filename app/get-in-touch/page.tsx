@@ -13,6 +13,9 @@ export default function GetInTouchPage() {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,10 +23,24 @@ export default function GetInTouchPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // wire this up to your email/API endpoint
-    console.log(form);
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error("Failed to submit");
+
+      setStatus("success");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -31,11 +48,11 @@ export default function GetInTouchPage() {
       <Navbar />
 
       <main className="min-h-screen bg-white">
-         <section className="pt-8 pb-20">
+        <section className="pt-8 pb-20">
           <div className="mx-auto max-w-[1100px] px-6">
             {/* Contact Us heading with envelope graphic */}
             <div className="mb-12 flex flex-col items-center text-center">
-        <div className="relative aspect-[300/199] w-full max-w-[600px]">
+              <div className="relative aspect-[300/199] w-full max-w-[600px]">
                 <Image
                   src="/contact-us.png"
                   alt="Contact Us"
@@ -156,10 +173,22 @@ export default function GetInTouchPage() {
 
                   <button
                     type="submit"
-                    className="rounded-md bg-[#2F5C2B] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#234420]"
+                    disabled={status === "loading"}
+                    className="rounded-md bg-[#2F5C2B] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#234420] disabled:opacity-60"
                   >
-                    Submit
+                    {status === "loading" ? "Sending…" : "Submit"}
                   </button>
+
+                  {status === "success" && (
+                    <p className="text-sm text-[#2F5C2B]">
+                      Thanks — your message has been sent.
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="text-sm text-red-600">
+                      Something went wrong. Please try again.
+                    </p>
+                  )}
                 </form>
               </div>
             </div>
