@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import { fontVars } from "../lib/fonts";
@@ -40,6 +42,11 @@ const galleryStrip = [
 ];
 
 export default function LandEastOfBasingstokePage() {
+  const [galleryIndex, setGalleryIndex] = useState(0);
+
+  const showNext = () =>
+    setGalleryIndex((i) => (i === galleryStrip.length - 1 ? 0 : i + 1));
+
   return (
     <div className={`${fontVars} font-body`}>
       <Navbar />
@@ -58,13 +65,10 @@ export default function LandEastOfBasingstokePage() {
 
           <div className="relative h-full flex items-center justify-center">
             <div className="max-w-5xl mx-auto px-6 text-center">
-             
               {/* Title */}
               <h1 className="text-white font-display font-medium leading-tight text-[clamp(2.5rem,4.5vw,4.5rem)]">
                 Land East of Basingstoke
               </h1>
-
-             
 
               {/* Logo — centered, below the subtitle */}
               <div className="flex justify-center mt-8">
@@ -77,9 +81,7 @@ export default function LandEastOfBasingstokePage() {
                 />
               </div>
 
-              <div className="flex justify-center mt-8">
-                
-              </div>
+              <div className="flex justify-center mt-8"></div>
             </div>
           </div>
         </section>
@@ -478,7 +480,7 @@ export default function LandEastOfBasingstokePage() {
 
         {/* PHOTO GALLERY */}
         <section className="py-16 bg-chalk">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <span className="uppercase tracking-[0.25em] text-xs font-mono text-clay">
               In pictures
             </span>
@@ -486,20 +488,48 @@ export default function LandEastOfBasingstokePage() {
               Land East of Basingstoke
             </h2>
 
-            <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:thin]">
+            <div className="relative">
+              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-sage shadow-md">
+                <Image
+                  src={galleryStrip[galleryIndex]}
+                  alt={`Land East of Basingstoke, view ${galleryIndex + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 720px"
+                  className="object-cover"
+                  priority={galleryIndex === 0}
+                />
+              </div>
+
+              {/* Next arrow only */}
+              <button
+                type="button"
+                onClick={showNext}
+                aria-label="Next image"
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-moss-dark shadow-md transition hover:bg-white"
+              >
+                <ChevronRight size={20} />
+              </button>
+
+              {/* Image counter */}
+              <div className="absolute bottom-3 right-3 rounded-full bg-black/50 px-3 py-1 text-xs font-medium text-white">
+                {galleryIndex + 1} / {galleryStrip.length}
+              </div>
+            </div>
+
+            {/* Dot indicators */}
+            <div className="mt-5 flex flex-wrap justify-center gap-2">
               {galleryStrip.map((src, i) => (
-                <div
+                <button
                   key={src}
-                  className="group relative shrink-0 w-[260px] sm:w-[320px] h-[220px] rounded-lg overflow-hidden snap-start border border-sage shadow-sm"
-                >
-                  <Image
-                    src={src}
-                    alt={`Land East of Basingstoke, view ${i + 1}`}
-                    fill
-                    sizes="320px"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
+                  type="button"
+                  onClick={() => setGalleryIndex(i)}
+                  aria-label={`Go to image ${i + 1}`}
+                  className={`h-2 rounded-full transition-all ${
+                    i === galleryIndex
+                      ? "w-6 bg-moss-dark"
+                      : "w-2 bg-sage hover:bg-moss"
+                  }`}
+                />
               ))}
             </div>
           </div>

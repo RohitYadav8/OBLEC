@@ -17,36 +17,11 @@ function FacebookIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-function TwitterIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.6L4.5 22H1.3l8.1-9.3L1 2h7.1l4.9 6.1L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z" />
-    </svg>
-  );
-}
-
-function InstagramIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2c2.7 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.42.06 4.13s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.42.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.7 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76A4.9 4.9 0 0 1 5.44 2.54c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.3 2 12 2Zm0 1.8c-2.67 0-2.98.01-4.04.06-.87.04-1.34.18-1.65.3-.42.16-.71.36-1.02.67-.31.31-.5.6-.67 1.02-.12.31-.26.78-.3 1.65C4.26 8.68 4.25 9 4.25 11.66v.68c0 2.67.01 2.98.06 4.04.04.87.18 1.34.3 1.65.16.42.36.71.67 1.02.31.31.6.5 1.02.67.31.12.78.26 1.65.3 1.06.05 1.37.06 4.04.06h.02c2.6 0 2.98-.01 4.02-.06.87-.04 1.34-.18 1.65-.3.42-.16.71-.36 1.02-.67.31-.31.5-.6.67-1.02.12-.31.26-.78.3-1.65.05-1.06.06-1.37.06-4.04v-.02c0-2.6-.01-2.98-.06-4.02-.04-.87-.18-1.34-.3-1.65a2.6 2.6 0 0 0-.67-1.02 2.6 2.6 0 0 0-1.02-.67c-.31-.12-.78-.26-1.65-.3-1.04-.05-1.36-.06-4.02-.06Zm0 3.15a5.05 5.05 0 1 1 0 10.1 5.05 5.05 0 0 1 0-10.1Zm0 1.8a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Zm5.25-1.99a1.18 1.18 0 1 1-2.36 0 1.18 1.18 0 0 1 2.36 0Z" />
-    </svg>
-  );
-}
-
-function YoutubeIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M23.5 6.9a3 3 0 0 0-2.12-2.12C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.38.48A3 3 0 0 0 .5 6.9 31.4 31.4 0 0 0 0 12.5a31.4 31.4 0 0 0 .5 5.6 3 3 0 0 0 2.12 2.12c1.88.48 9.38.48 9.38.48s7.5 0 9.38-.48a3 3 0 0 0 2.12-2.12c.34-1.83.5-3.71.5-5.6a31.4 31.4 0 0 0-.5-5.6ZM9.6 15.9V9.1l6.24 3.4-6.24 3.4Z" />
-    </svg>
-  );
-}
-
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Our Campaign Partners", href: "/our-campaign-partners" },
   { label: "The Facts", href: "/the-facts" },
   { label: "How Can You Help", href: "/how-you-can-help" },
-  { label: "News & Updates", href: "/news-and-updates" },
   { label: "Contact Us", href: "/get-in-touch" },
 ];
 
@@ -55,7 +30,6 @@ const areasOfConcern = [
   { label: "Lodge Farm", href: "/lodge-farm" },
   { label: "East of Basingstoke", href: "/east-of-basingstoke" },
   { label: "River Loddon", href: "/river-loddon" },
-  { label: "Local Wildlife", href: "/local-wildlife" },
 ];
 
 const partners = [
@@ -104,7 +78,11 @@ export default function Footer() {
               type="submit"
               className="flex h-12 shrink-0 items-center gap-2 rounded-md bg-[#2F5C2B] px-6 text-sm font-semibold text-white transition hover:bg-[#234420]"
             >
-              Subscribe
+              <Link href="/get-in-touch" className="flex item-center gap-2">
+
+               Subscribe
+              </Link>
+            
               <ArrowRight size={16} />
             </button>
           </form>
@@ -143,21 +121,6 @@ export default function Footer() {
               Working together to protect and improve our countryside for
               wildlife, heritage and future generations.
             </p>
-
-            <div className="mt-6 flex gap-3">
-              {[FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon].map(
-                (Icon, i) => (
-                  <Link
-                    key={i}
-                    href="#"
-                    aria-label="Social link"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white transition hover:bg-white/10"
-                  >
-                    <Icon size={16} />
-                  </Link>
-                )
-              )}
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -174,10 +137,7 @@ export default function Footer() {
                     href={link.href}
                     className="group flex items-center gap-2 text-[15px] text-white/85 transition hover:text-white"
                   >
-                    <Sprout
-                      size={13}
-                      className="shrink-0 text-[#8FC15D]"
-                    />
+                    <Sprout size={13} className="shrink-0 text-[#8FC15D]" />
                     <span className="flex-1">{link.label}</span>
                     <ChevronRight
                       size={14}
@@ -238,7 +198,9 @@ export default function Footer() {
             </a>
 
             <Link
-              href="#"
+              href="https://www.facebook.com/people/Old-Basing-and-Lychpit-Environment-Campaign/61555003000332/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-3 flex items-center gap-3 text-sm text-white/85 transition hover:text-white"
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10">
@@ -257,8 +219,21 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Facebook icon, centered */}
+        <div className="mt-14 flex justify-center">
+          <Link
+            href="https://www.facebook.com/people/Old-Basing-and-Lychpit-Environment-Campaign/61555003000332/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="OBLEC on Facebook"
+            className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 text-white transition hover:bg-white/10"
+          >
+            <FacebookIcon size={24} />
+          </Link>
+        </div>
+
         {/* Proudly working with */}
-        <div className="mt-16 flex items-center gap-4">
+        <div className="mt-8 flex items-center gap-4">
           <div className="h-px flex-1 bg-white/15" />
           <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
             <Sprout size={14} className="text-[#8FC15D]" />
@@ -268,15 +243,18 @@ export default function Footer() {
           <div className="h-px flex-1 bg-white/15" />
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-14 gap-y-8">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
           {partners.map((p) => (
-            <div key={p.name} className="relative h-10 w-32 opacity-90">
+            <div
+              key={p.name}
+              className="relative h-20 w-44 opacity-90 transition hover:opacity-100"
+            >
               <Image
                 src={p.image}
                 alt={p.name}
                 fill
                 className="object-contain"
-                sizes="128px"
+                sizes="176px"
               />
             </div>
           ))}
