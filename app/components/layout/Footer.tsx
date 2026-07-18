@@ -18,7 +18,7 @@ function FacebookIcon({ size = 16 }: { size?: number }) {
 }
 
 const quickLinks = [
-  { label: "Home", href: "/" },
+  { label: "Area Under Threat", href: "/" },
   { label: "Our Campaign Partners", href: "/our-campaign-partners" },
   { label: "The Facts", href: "/the-facts" },
   { label: "How Can You Help", href: "/how-you-can-help" },
